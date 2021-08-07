@@ -30,19 +30,25 @@
 //   );
 // }
 
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./Views/Home";
 import Login from "./Views/Auth/Login";
 import SignIn from "./Views/Auth/SignIn";
 import ForgetPass from "./Views/Auth/ForgetPass";
 import ResetPass from "./Views/Auth/ResetPass";
+import Protect from "./Views/Protect";
+import Test from "./Views/testing.jsx";
+
 export default function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Protect />
+        </Route>
+        <Route exact path="/Test">
+          <Test />
         </Route>
 
         <Route path="/Login">

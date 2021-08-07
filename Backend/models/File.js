@@ -1,31 +1,41 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
 const sequelize = require("../config/database");
-const LocalUser = require("./LocalUser");
-const User = sequelize.define(
-  "User",
+const File = sequelize.define(
+  "File",
   {
     // Model attributes are defined here
     id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.UUID,
+      defaultValue: UUIDV4,
       primaryKey: true,
     },
-    Name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
+    path: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    strategy: {
+    size: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    UID: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+    ownerId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    ownerPath: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    acsses: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -36,6 +46,6 @@ const User = sequelize.define(
 
 // `sequelize.define` also returns the model
 // console.log(User === sequelize.models.User); // true
-sequelize.sync();
+File.sync();
 
-module.exports = User;
+module.exports = File;

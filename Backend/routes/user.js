@@ -4,6 +4,8 @@ const router = express.Router();
 const Eamil = require("../Email/sendEmailTo");
 const registerCb = require("../middlewares/Auth/register");
 const LoginMW = require("../middlewares/Auth/login");
+const UpdateMW = require("../middlewares/Auth/UpdateData");
+const { isAuth } = require("../middlewares/Auth/CheckAuth");
 const {
   SendForgetEmail,
   ResetPassword,
@@ -24,7 +26,7 @@ router.post("/ResetPass", ResetPassword, (req, res, next) => {
   res.json({ msg: "OK" });
 });
 
-router.get("/logout", (req, res, next) => {
+router.post("/logout", (req, res, next) => {
   req.logout();
   res.json({ msg: "You are loged out" });
 });
@@ -38,6 +40,11 @@ router.get("/sendemail", (req, res, next) => {
       console.log(e);
       res.json({ msg: "email not sens" });
     });
+});
+
+router.post("/updateData", isAuth, UpdateMW, (req, res, next) => {
+  console.log(req.body);
+  res.json({ msg: "OK" });
 });
 
 module.exports = router;

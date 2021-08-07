@@ -4,6 +4,7 @@ const { use } = require("../../routes/user");
 const SendEmailTo = require("../../Email/sendEmailTo");
 const { genpassword } = require("../../config/password");
 const { Op } = require("sequelize");
+const LocalUser = require("../../models/LocalUser");
 
 const SendForgetEmail = (req, res, next) => {
   User.findOne({
@@ -47,7 +48,7 @@ const ResetPassword = (req, res, next) => {
           const payload = jwt.verify(req.body.token, secret);
           if (payload) {
             const { salt, hash } = genpassword(req.body.password);
-            User.update(
+            LocalUser.update(
               { salt: salt, hash: hash },
               { where: { id: req.body.id } }
             )

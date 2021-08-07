@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/Logo.svg";
 
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../Axios";
 const UseStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -110,7 +110,7 @@ export default function Login(props) {
       SetCPasswordError(false);
       axios
         .post(
-          "http://localhost:4000/u/ResetPass",
+          "/u/ResetPass",
           {
             id: id,
             token: token,
@@ -248,7 +248,7 @@ export default function Login(props) {
                         className={classes.button3}
                         variant="contained"
                       >
-                        {Lodding ? <CircularProgress /> : "Send Email"}
+                        {Lodding ? <CircularProgress /> : "Reset Password"}
                       </Button>
                     </Grid>
                   </Grid>

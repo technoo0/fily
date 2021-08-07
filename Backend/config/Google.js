@@ -23,14 +23,14 @@ passport.use(
               id: profile.id,
               strategy: "google",
             }).then((user) => {
-              return cd(null, user);
+              return cb(null, user);
             });
           } //the email not regestred
 
-          return cd(null, user);
+          return cb(null, user);
         })
         .catch((err) => {
-          cd(err);
+          cb(err);
           console.log("rrrrrrrrrr");
         });
       console.log(profile);

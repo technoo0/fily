@@ -18,7 +18,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/Logo.svg";
 import GoogleLogo from "../../images/Google.svg";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../Axios";
 const UseStyles = makeStyles((theme) => ({
   //   Forget: {
   //     marginLeft: 200,
@@ -105,7 +105,7 @@ export default function Login() {
     SetPasswordError(false);
     axios
       .post(
-        "http://localhost:4000/u/login",
+        "/u/login",
         {
           email: Email,
           password: Pass,
@@ -127,6 +127,8 @@ export default function Login() {
             SetPasswordError(true);
           } else if (e.response.data.message == "Too Many Password Retrys") {
             alert("You intered you password too many times slow down");
+          } else {
+            alert(e.response.data.message);
           }
         }
         //console.log("errrrrrr", e.response.data.message);
@@ -139,6 +141,13 @@ export default function Login() {
     } else if (e.target.name == "password") {
       SetPass(e.target.value);
     }
+  };
+
+  const TwitterHandel = () => {
+    window.location.href = "http://localhost:4000/auth/twitter";
+  };
+  const GoogleHandel = () => {
+    window.location.href = "http://localhost:4000/auth/google";
   };
   return (
     <Grid
@@ -158,6 +167,7 @@ export default function Login() {
             </Grid>
             <Grid item xs={8} lg={9}>
               <Button
+                onClick={TwitterHandel}
                 size="large"
                 fullWidth
                 className={classes.button}
@@ -174,6 +184,7 @@ export default function Login() {
             </Grid>
             <Grid item xs={8} lg={9}>
               <Button
+                onClick={GoogleHandel}
                 fullWidth
                 size="large"
                 className={classes.button2}

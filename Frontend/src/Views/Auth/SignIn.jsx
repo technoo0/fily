@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import validator from "validator";
-import axios from "axios";
+import axios from "../../Axios";
 
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { makeStyles } from "@material-ui/core/styles";
@@ -124,7 +124,7 @@ export default function Login() {
         SetCPasswordError(false);
         axios
           .post(
-            "http://localhost:4000/u/register",
+            "/u/register",
             {
               Name: Name,
               email: Email,
@@ -163,6 +163,14 @@ export default function Login() {
       SetCPass(e.target.value);
     }
   };
+
+  const TwitterHandel = () => {
+    window.location.href = "http://localhost:4000/auth/twitter";
+  };
+  const GoogleHandel = () => {
+    window.location.href = "http://localhost:4000/auth/google";
+  };
+
   return (
     <Grid
       className={classes.mainGrid}
@@ -181,6 +189,7 @@ export default function Login() {
             </Grid>
             <Grid item xs={8} lg={9}>
               <Button
+                onClick={TwitterHandel}
                 size="large"
                 fullWidth
                 className={classes.button}
@@ -197,6 +206,7 @@ export default function Login() {
             </Grid>
             <Grid item xs={8} lg={9}>
               <Button
+                onClick={GoogleHandel}
                 fullWidth
                 size="large"
                 className={classes.button2}
@@ -241,7 +251,7 @@ export default function Login() {
                     <TextField
                       className={classes.formInput}
                       id="Email"
-                      type="text"
+                      type="email"
                       //placeholder="Email"
                       fullWidth
                       name="Email"

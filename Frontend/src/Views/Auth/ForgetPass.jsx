@@ -13,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/Logo.svg";
 
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../Axios";
 const UseStyles = makeStyles((theme) => ({
   //   Forget: {
   //     marginLeft: 200,
@@ -83,7 +83,7 @@ export default function Login() {
 
     axios
       .post(
-        "http://localhost:4000/u/ForgetPass",
+        "/u/ForgetPass",
         {
           email: Email,
         },

@@ -1,5 +1,7 @@
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter");
+const User = require("../models/user");
+const { Op } = require("sequelize");
 passport.use(
   new TwitterStrategy(
     {
@@ -7,10 +9,30 @@ passport.use(
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
       callbackURL: "http://localhost:4000/auth/twitter/callback",
     },
-    function (token, tokenSecret, profile, cb) {
-      //   User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-      //     return cb(err, user);
-      //   });
+    function (accessToken, refreshToken, profile, cb) {
+      User.findOne({
+        where: {
+          [Op.and]: [{ id: profile.id }, { strategy: "twitter" }],
+        },
+      })
+        .then((user) => {
+          if (!user) {
+            User.create({
+              Name: profile.displayName,
+              email: "twitter.com/" + profile.username,
+              id: profile.id,
+              strategy: "twitter",
+            }).then((user) => {
+              return cb(null, user);
+            });
+          } //the email not regestred
+
+          return cb(null, user);
+        })
+        .catch((err) => {
+          cb(err);
+          console.log("rrrrrrrrrr");
+        });
       console.log(profile);
       cb(null, profile);
     }

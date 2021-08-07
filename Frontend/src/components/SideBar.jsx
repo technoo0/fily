@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Drawer,
   List,
@@ -10,6 +10,7 @@ import {
 //import "./Upload.css";
 import { makeStyles } from "@material-ui/core";
 import logo from "../images/upload.svg";
+import Profile from "./ProfilePage";
 import Toolbar from "@material-ui/core/Toolbar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -56,6 +57,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function SideBar() {
+  const [open, setopen] = useState(false);
+  const profile = () => {
+    setopen(true);
+  };
+  const CloseProfile = () => {
+    setopen(false);
+  };
   const classes = useStyles();
   return (
     <Drawer
@@ -104,7 +112,7 @@ export default function SideBar() {
             <ListItemText>Bin</ListItemText>
           </ListItem>
 
-          <ListItem button>
+          <ListItem button onClick={profile}>
             <ListItemIcon className={classes.listicon}>
               <AccountCircleIcon color="primary" />
             </ListItemIcon>
@@ -112,6 +120,7 @@ export default function SideBar() {
           </ListItem>
         </List>
       </div>
+      <Profile open={open} CloseProfile={CloseProfile} />
     </Drawer>
   );
 }
