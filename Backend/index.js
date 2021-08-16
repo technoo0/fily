@@ -7,6 +7,8 @@ const userRoute = require("./routes/user");
 const GoogleRoute = require("./routes/google");
 const TwitterRoute = require("./routes/twitterRoute");
 const FilesRoute = require("./routes/Files");
+const UploadRoute = require("./routes/upload");
+const ops = require("./routes/ops");
 const session = require("./config/session");
 var cors = require("cors");
 const app = express();
@@ -28,6 +30,8 @@ app.use("/", mainRoute);
 app.use("/u/", userRoute);
 app.use("/auth/google", GoogleRoute);
 app.use("/auth/twitter", TwitterRoute);
-app.use("/file/", FilesRoute);
+app.use("/get/", FilesRoute);
+app.use("/upload/", UploadRoute);
+app.use("/ops/", ops);
 
 app.listen(process.env.PORT || 4000);

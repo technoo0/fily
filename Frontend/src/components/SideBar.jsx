@@ -10,12 +10,19 @@ import {
 //import "./Upload.css";
 import { makeStyles } from "@material-ui/core";
 import logo from "../images/upload.svg";
+import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
 import Profile from "./ProfilePage";
+import AddFolder from "./AddFolder";
 import Toolbar from "@material-ui/core/Toolbar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import UploadButtom from "./UploadButtom";
+import { useHistory } from "react-router-dom";
+
+import HomeIcon from "@material-ui/icons/Home";
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
@@ -31,38 +38,36 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 55,
     width: 250,
   },
-  buttonoutline: {
-    height: 60,
-    width: 160,
-    marginLeft: 18,
-    borderRadius: 50,
-    boxShadow: "0px 0px 10px rgba(0,0,0,0.25)",
-    fontWeight: "bold",
-    fontSize: 20,
-    borderWidth: 2,
-    color: "#003049",
-    "&:hover": {
-      borderWidth: 2,
-    },
 
-    textTransform: "none",
-
-    fontFamily: ["Titillium Web", "Roboto"].join(","),
-  },
-  ButtomLogo: {
-    width: 40,
-  },
   listicon: {
     minWidth: 30,
   },
 }));
 export default function SideBar() {
   const [open, setopen] = useState(false);
+  const [Folderopen, setFolderopen] = useState(false);
+
+  const History = useHistory();
+
+  const Favorite = () => {
+    History.push("/u/Favorite");
+  };
+  const GoToHome = () => {
+    History.push("/u/");
+  };
+
   const profile = () => {
     setopen(true);
   };
   const CloseProfile = () => {
     setopen(false);
+  };
+
+  const CreateFolder = () => {
+    setFolderopen(true);
+  };
+  const CloseFolder = () => {
+    setFolderopen(false);
   };
   const classes = useStyles();
   return (
@@ -77,28 +82,23 @@ export default function SideBar() {
       <div className={classes.drawerContainer}>
         <List>
           <ListItem>
-            {/* <UploadButtom /> */}
-            <Button
-              size="large"
-              variant="outlined"
-              className={classes.button}
-              color="secondary"
-              startIcon={
-                <img
-                  className={classes.ButtomLogo}
-                  src={logo}
-                  alt="upload logo"
-                />
-              }
-              classes={{
-                outlined: classes.buttonoutline,
-              }}
-            >
-              Upload
-            </Button>
+            <UploadButtom />
           </ListItem>
 
-          <ListItem button>
+          <ListItem button onClick={GoToHome}>
+            <ListItemIcon className={classes.listicon}>
+              <HomeIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText>Home</ListItemText>
+          </ListItem>
+          <ListItem button onClick={CreateFolder}>
+            <ListItemIcon className={classes.listicon}>
+              <CreateNewFolderIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText>Create Folder</ListItemText>
+          </ListItem>
+
+          <ListItem button onClick={Favorite}>
             <ListItemIcon className={classes.listicon}>
               <FavoriteIcon color="primary" />
             </ListItemIcon>
@@ -121,6 +121,7 @@ export default function SideBar() {
         </List>
       </div>
       <Profile open={open} CloseProfile={CloseProfile} />
+      <AddFolder open={Folderopen} CloseProfile={CloseFolder} />
     </Drawer>
   );
 }

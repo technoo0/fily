@@ -38,6 +38,7 @@ import SignIn from "./Views/Auth/SignIn";
 import ForgetPass from "./Views/Auth/ForgetPass";
 import ResetPass from "./Views/Auth/ResetPass";
 import Protect from "./Views/Protect";
+import FolderPage from "./Views/Folder";
 import Test from "./Views/testing.jsx";
 
 export default function App() {
@@ -47,7 +48,11 @@ export default function App() {
         <Route exact path="/">
           <Protect />
         </Route>
-        <Route exact path="/Test">
+
+        <Route path="/u">
+          <Home />
+        </Route>
+        <Route path="/Test">
           <Test />
         </Route>
 

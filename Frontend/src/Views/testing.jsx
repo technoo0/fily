@@ -2,6 +2,9 @@ import React, { useRef, useState } from "react";
 import axios from "../Axios";
 import { Button } from "@material-ui/core";
 import FileDownload from "js-file-download";
+import useStore from "../store";
+import UploadingStatus from "../components/UploadingStatus";
+import BrowserFolders from "../components/FileMuneDiloge/BorwoseFolders";
 export default function Testing() {
   const FilePicker = useRef();
   const [FilePath, setFilePath] = useState();
@@ -12,7 +15,7 @@ export default function Testing() {
   const uploadf = () => {
     let formData = new FormData();
     formData.append("file", FilePath);
-    formData.append("path", "/");
+    formData.append("FolderId", "5069d16c-c7ae-49b4-908e-9ecdf7a048f3");
     formData.append("acsses", "private");
     axios
       .post("/file/upload", formData, {
@@ -43,6 +46,21 @@ export default function Testing() {
         console.log(e);
       });
   };
+  const getMyData = () => {
+    axios
+      .get("/file/MainFolder", { withCredentials: true })
+      .then((e) => {
+        console.log(e);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  const addTest = () => {
+    useStore.setState((state) => ({
+      UploadingProsses: [...state.UploadingProsses, { name: "p", value: 0 }],
+    }));
+  };
   return (
     <div>
       <input
@@ -56,6 +74,12 @@ export default function Testing() {
 
       <Button onClick={uploadf}>dd</Button>
       <Button onClick={Download}>ddownload</Button>
+      <Button onClick={getMyData}>get My Data</Button>
+      <Button onClick={addTest}>add prosses</Button>
+      <div>
+        <UploadingStatus />
+        <BrowserFolders />
+      </div>
     </div>
   );
 }

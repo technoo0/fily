@@ -31,9 +31,9 @@ export default function MainContent({ CardsNumber }) {
       alignItems="center"
       spacing={2}
     >
-      {[...Array(CardsNumber)].map((_, index) => (
-        <Grid key={index} item xs={12} sm={7} md={4} lg={3} xl={2}>
-          <Card></Card>
+      {CardsNumber.map((itemdata, index) => (
+        <Grid key={index} item>
+          <Card data={itemdata}></Card>
         </Grid>
       ))}
     </Grid>

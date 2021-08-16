@@ -75,6 +75,7 @@ export default function AlertDialog({ open, CloseProfile }) {
       console.log(res);
       if (res.data.msg == "You are loged out") {
         console.log(res);
+        history.push("/");
         window.location.reload();
       }
     });

@@ -1,7 +1,7 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
 const sequelize = require("../config/database");
-const File = sequelize.define(
-  "File",
+const Folder = sequelize.define(
+  "Folder",
   {
     // Model attributes are defined here
     id: {
@@ -13,29 +13,22 @@ const File = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    path: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    size: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     ownerId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    FolderId: {
-      type: DataTypes.STRING,
+    parent: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
+    },
+    parentId: {
+      type: DataTypes.UUID,
+      allowNull: true,
     },
     acsses: {
       type: DataTypes.STRING,
+      defaultValue: "private",
       allowNull: false,
     },
     Favorite: {
@@ -51,6 +44,6 @@ const File = sequelize.define(
 
 // `sequelize.define` also returns the model
 // console.log(User === sequelize.models.User); // true
-File.sync();
+Folder.sync();
 
-module.exports = File;
+module.exports = Folder;

@@ -31,9 +31,9 @@ export default function MainContent({ CardsNumber }) {
       alignItems="center"
       spacing={2}
     >
-      {[...Array(CardsNumber)].map((_, index) => (
-        <Grid key={index} item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <FolderCard />
+      {CardsNumber.map((Folder, index) => (
+        <Grid key={index} item>
+          <FolderCard data={Folder} />
         </Grid>
       ))}
     </Grid>

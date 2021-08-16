@@ -3,10 +3,12 @@ import LangingPage from "./LandingPage";
 import Home from "./Home";
 import axios from "../Axios";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 // var ff = "NA";
 import useStore from "../store";
 export default function Protect() {
   const [ff, setff] = useState("NA");
+  const History = useHistory();
   useEffect(() => {
     axios
       .get("/", { withCredentials: true })
@@ -14,6 +16,7 @@ export default function Protect() {
         console.log(res.data.user);
 
         setff("OK");
+        History.push("/u/");
         useStore.setState({
           UserData: {
             Name: res.data.user.Name,
@@ -32,7 +35,7 @@ export default function Protect() {
   if (ff == "NA") {
     return <div></div>;
   } else if (ff == "OK") {
-    return <Home />;
+    return "";
   } else if (ff == "NO") {
     return <LangingPage />;
   }

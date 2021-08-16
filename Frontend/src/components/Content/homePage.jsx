@@ -1,9 +1,14 @@
 import { Grid, Typography, Toolbar } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import {
+  getMainFolderdata,
+  getrecentFiles,
+  RefreshHome,
+} from "../../utils/getData";
 import MainContent from "./MainContent";
 import FoldersArray from "./FoldersArray";
+import useStore from "../../store";
 const useStyles = makeStyles((theme) => ({
   mainpaper: {
     width: "87%",
@@ -15,6 +20,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function HomePage() {
   const classes = useStyles();
+  const Refreshme = () => {
+    RefreshHome();
+  };
+  useEffect(() => {
+    useStore.setState({
+      refreshCurrent: Refreshme,
+    });
+    getMainFolderdata();
+    getrecentFiles();
+  }, []);
+
+  const MainFiles = useStore((state) => state.MianFiles);
+  const MianFolders = useStore((state) => state.MianFolders);
+  const recentlyadded = useStore((state) => state.recentlyadded);
+
   return (
     <Grid className={classes.mainpaper} container direction="column">
       <Grid item>
@@ -23,7 +43,7 @@ export default function HomePage() {
         </Typography>
       </Grid>
       <Grid item>
-        <MainContent CardsNumber={6} />
+        <MainContent CardsNumber={recentlyadded} />
       </Grid>
       <Toolbar />
 
@@ -33,7 +53,7 @@ export default function HomePage() {
         </Typography>
       </Grid>
       <Grid item>
-        <FoldersArray CardsNumber={6} />
+        <FoldersArray CardsNumber={MianFolders} />
       </Grid>
       <Toolbar />
 
@@ -43,7 +63,7 @@ export default function HomePage() {
         </Typography>
       </Grid>
       <Grid item>
-        <MainContent CardsNumber={12} />
+        <MainContent CardsNumber={MainFiles} />
       </Grid>
     </Grid>
   );
