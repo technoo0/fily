@@ -43,7 +43,7 @@ export default function HomePage() {
         </Typography>
       </Grid>
       <Grid item>
-        <MainContent CardsNumber={recentlyadded} />
+        <MainContent recently={true} CardsNumber={recentlyadded} />
       </Grid>
       <Toolbar />
 

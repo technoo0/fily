@@ -2,26 +2,15 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "./Card";
-const useStyles = makeStyles((theme) => ({
-  mainpaper: {
-    // marginLeft: 170,
-    // marginTop: 60,
-    // [theme.breakpoints.up("xs")]: {
-    //   maxWidth: "65%",
-    // },
-    // [theme.breakpoints.up("sm")]: {
-    //   maxWidth: "70%",
-    // },
-    // [theme.breakpoints.up("md")]: {
-    //   maxWidth: "80%",
-    // },
-    // [theme.breakpoints.up("lg")]: {
-    //   maxWidth: "85%",
-    // },
-  },
-}));
-export default function MainContent({ CardsNumber }) {
+import CardSkeleton from "./Skeleton/Card";
+import useStore from "../../store";
+import Skeleton from "@material-ui/lab/Skeleton";
+const useStyles = makeStyles((theme) => ({}));
+export default function MainContent({ CardsNumber, recently }) {
   const classes = useStyles();
+  const recentlyLogging = useStore((state) => state.recentlyLogging);
+  const fileLogging = useStore((state) => state.fileLogging);
+
   return (
     <Grid
       className={classes.mainpaper}
@@ -31,11 +20,29 @@ export default function MainContent({ CardsNumber }) {
       alignItems="center"
       spacing={2}
     >
-      {CardsNumber.map((itemdata, index) => (
-        <Grid key={index} item>
-          <Card data={itemdata}></Card>
-        </Grid>
-      ))}
+      {recently
+        ? recentlyLogging
+          ? [...Array(4)].map((index) => (
+              <Grid key={index} item>
+                <CardSkeleton />
+              </Grid>
+            ))
+          : CardsNumber.map((itemdata, index) => (
+              <Grid key={index} item>
+                <Card data={itemdata}></Card>
+              </Grid>
+            ))
+        : fileLogging
+        ? [...Array(5)].map((index) => (
+            <Grid key={index} item>
+              <CardSkeleton />
+            </Grid>
+          ))
+        : CardsNumber.map((itemdata, index) => (
+            <Grid key={index} item>
+              <Card data={itemdata}></Card>
+            </Grid>
+          ))}
     </Grid>
   );
 }

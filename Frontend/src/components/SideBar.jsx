@@ -105,12 +105,12 @@ export default function SideBar() {
             <ListItemText>Favorite</ListItemText>
           </ListItem>
 
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemIcon className={classes.listicon}>
               <DeleteIcon color="primary" />
             </ListItemIcon>
             <ListItemText>Bin</ListItemText>
-          </ListItem>
+          </ListItem> */}
 
           <ListItem button onClick={profile}>
             <ListItemIcon className={classes.listicon}>

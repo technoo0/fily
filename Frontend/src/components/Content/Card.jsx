@@ -5,6 +5,8 @@ import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import RenameDialog from "../FileMuneDiloge/RenameDialoge";
 import CopyMoveDialog from "../FileMuneDiloge/CopyMoveDialog";
+import ShareDialog from "../FileMuneDiloge/ShareDiloge";
+import PerviewDialoge from "../Perview/PerviewDialoge";
 import {
   Visibility,
   Edit,
@@ -26,14 +28,18 @@ import {
 } from "@material-ui/core";
 import {
   DeletFile,
+  ShareFile,
   RenameFile,
   MoveFile,
   RmFromFav,
+  DownloadFile,
   AddToFav,
 } from "../../utils/FileOprations";
 import imagefile from "../../images/image.jpg";
 import videofile from "../../images/video.jpg";
 import pdffile from "../../images/pdf.jpg";
+import textfile from "../../images/text.jpg";
+import aduiofile from "../../images/music.jpg";
 import filefile from "../../images/file.jpg";
 import HtmlTooltip from "./htmlToolTip";
 import moment from "moment";
@@ -114,6 +120,10 @@ export default function OutlinedCard({ data }) {
       return videofile;
     } else if (data.type.includes("pdf")) {
       return pdffile;
+    } else if (data.type.includes("audio")) {
+      return aduiofile;
+    } else if (data.type.includes("text")) {
+      return textfile;
     } else {
       return filefile;
     }
@@ -129,6 +139,10 @@ export default function OutlinedCard({ data }) {
     handleClose();
     setopenRename(true);
   };
+  const DownloadFileHandle = () => {
+    DownloadFile(data.id, data.name);
+    handleClose();
+  };
 
   const MoveFileHandle = () => {
     // DeletFile(data.id);
@@ -142,6 +156,21 @@ export default function OutlinedCard({ data }) {
     setcurrentOP("Copy");
     setopenMove(true);
   };
+  const [openShare, setopenShare] = useState(false);
+  const [LinkStatus, setLinkStatus] = useState("");
+  const handleShareClose = () => {
+    setopenShare(false);
+  };
+  const ShareFileHandle = () => {
+    // DeletFile(data.id);
+    handleClose();
+
+    ShareFile(data.id).then((data) => {
+      console.log(data);
+      setLinkStatus(data);
+      setopenShare(true);
+    });
+  };
 
   const AddToFavFileHandle = () => {
     // DeletFile(data.id);
@@ -153,9 +182,19 @@ export default function OutlinedCard({ data }) {
     }
   };
 
+  const [openPerview, setopenPerview] = useState(false);
+  const handlePerviewClose = () => {
+    setopenPerview(false);
+  };
+  const PrivewContant = () => {
+    setopenPerview(true);
+    handleClose();
+  };
+
   const [openRename, setopenRename] = useState(false);
   const [openMove, setopenMove] = useState(false);
   const [currentOP, setcurrentOP] = useState("");
+
   const handleRenameClose = () => {
     setopenRename(false);
   };
@@ -186,7 +225,7 @@ export default function OutlinedCard({ data }) {
           variant="outlined"
           // onContextMenu={}
         >
-          <CardActionArea>
+          <CardActionArea onClick={PrivewContant}>
             <CardMedia className={classes.media} image={GetImage()} />
 
             <Typography className={classes.title} color="primary" variant="h6">
@@ -207,6 +246,18 @@ export default function OutlinedCard({ data }) {
         id={data.id}
         op={currentOP}
       />
+      <ShareDialog
+        open={openShare}
+        handleClose={handleShareClose}
+        link={LinkStatus}
+      />
+      <PerviewDialoge
+        open={openPerview}
+        handleClose={handlePerviewClose}
+        id={data.id}
+        type={data.type}
+        fileName={data.name}
+      ></PerviewDialoge>
       <Menu
         keepMounted
         open={state.mouseY !== null}
@@ -218,7 +269,7 @@ export default function OutlinedCard({ data }) {
             : undefined
         }
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={PrivewContant}>
           <ListItemIcon>
             <Visibility fontSize="small" />
           </ListItemIcon>
@@ -259,13 +310,13 @@ export default function OutlinedCard({ data }) {
           </ListItemIcon>
           Delete
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={ShareFileHandle}>
           <ListItemIcon>
             <Share fontSize="small" />
           </ListItemIcon>
           Share
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={DownloadFileHandle}>
           <ListItemIcon>
             <GetApp fontSize="small" />
           </ListItemIcon>

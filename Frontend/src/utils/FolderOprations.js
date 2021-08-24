@@ -8,10 +8,26 @@ const DeletFolder = (id) => {
       if (data.data.msg == "OK") {
         const refreshCurrent = useStore.getState().refreshCurrent;
         refreshCurrent();
+        useStore.setState({
+          alertOpen: true,
+          alertType: "ok",
+          alertMsg: "Folder Deleted successfully",
+        });
+      } else {
+        useStore.setState({
+          alertOpen: true,
+          alertType: "error",
+          alertMsg: "an Error occoured please try again ",
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      useStore.setState({
+        alertOpen: true,
+        alertType: "error",
+        alertMsg: "an Error occoured please try again ",
+      });
     });
 };
 
@@ -26,10 +42,26 @@ const RenameFolder = (id, newName) => {
       if (data.data.msg == "OK") {
         const refreshCurrent = useStore.getState().refreshCurrent;
         refreshCurrent();
+        useStore.setState({
+          alertOpen: true,
+          alertType: "ok",
+          alertMsg: "Folder Renamed successfully",
+        });
+      } else {
+        useStore.setState({
+          alertOpen: true,
+          alertType: "error",
+          alertMsg: "an Error occoured please try again ",
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      useStore.setState({
+        alertOpen: true,
+        alertType: "error",
+        alertMsg: "an Error occoured please try again ",
+      });
     });
 };
 
@@ -41,10 +73,20 @@ const MoveFolder = (id, folderId) => {
         console.log("hojhopj");
         const refreshCurrent = useStore.getState().refreshCurrent;
         refreshCurrent();
+        useStore.setState({
+          alertOpen: true,
+          alertType: "ok",
+          alertMsg: "Folder Moved successfully",
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      useStore.setState({
+        alertOpen: true,
+        alertType: "error",
+        alertMsg: "an Error occoured please try again ",
+      });
     });
 };
 
@@ -55,10 +97,20 @@ const CopyFolder = (id, folderId) => {
       if (data.data.msg == "OK") {
         const refreshCurrent = useStore.getState().refreshCurrent;
         refreshCurrent();
+        useStore.setState({
+          alertOpen: true,
+          alertType: "ok",
+          alertMsg: "Folder copied successfully",
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      useStore.setState({
+        alertOpen: true,
+        alertType: "error",
+        alertMsg: "an Error occoured please try again ",
+      });
     });
 };
 
@@ -68,10 +120,20 @@ const AddToFav = (id) => {
     .then((data) => {
       if (data.data.msg == "OK") {
         console.log("ok");
+        useStore.setState({
+          alertOpen: true,
+          alertType: "ok",
+          alertMsg: "The folder have been added to the favorite successfully",
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      useStore.setState({
+        alertOpen: true,
+        alertType: "error",
+        alertMsg: "an Error occoured please try again ",
+      });
     });
 };
 const RmFromFav = (id) => {
@@ -82,10 +144,21 @@ const RmFromFav = (id) => {
         console.log("ok");
         const refreshCurrent = useStore.getState().refreshCurrent;
         refreshCurrent();
+        useStore.setState({
+          alertOpen: true,
+          alertType: "ok",
+          alertMsg:
+            "The folder have been removed from the favorite successfully",
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      useStore.setState({
+        alertOpen: true,
+        alertType: "error",
+        alertMsg: "an Error occoured please try again ",
+      });
     });
 };
 

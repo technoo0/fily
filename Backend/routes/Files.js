@@ -8,12 +8,6 @@ const { Op } = require("sequelize");
 
 const Folder = require("../models/Folder");
 
-// router.get("/download", (req, res) => {
-//   const file = path.resolve("./uploads/1ff11a9074c77981c84b3bfbf46778f0.jpg");
-//   console.log(file);
-//   res.download(file); // Set disposition and send it.
-// });
-
 router.get("/MainFolderId", isAuth, (req, res) => {
   Folder.findOne({
     where: {
@@ -36,7 +30,15 @@ router.get("/MainFolderId", isAuth, (req, res) => {
 
 router.get("/FavoriteFolders", isAuth, (req, res) => {
   Folder.findAll({
-    attributes: ["id", "acsses", "createdAt", "name", "updatedAt", "Favorite"],
+    attributes: [
+      "id",
+      "acsses",
+      "createdAt",
+      "name",
+      "updatedAt",
+      "Favorite",
+      "OpenMe",
+    ],
     where: {
       [Op.and]: [{ Favorite: true }, { ownerId: req.user.id }],
     },
@@ -141,7 +143,15 @@ router.get("/files/:folderid", isAuth, (req, res) => {
 router.get("/folders/:folderid", isAuth, (req, res) => {
   var folderid = req.params.folderid;
   Folder.findAll({
-    attributes: ["id", "acsses", "createdAt", "name", "updatedAt", "Favorite"],
+    attributes: [
+      "id",
+      "acsses",
+      "createdAt",
+      "name",
+      "updatedAt",
+      "Favorite",
+      "OpenMe",
+    ],
     where: {
       [Op.and]: [{ parentId: folderid }, { ownerId: req.user.id }],
     },

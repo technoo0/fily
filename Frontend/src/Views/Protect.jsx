@@ -9,34 +9,40 @@ import useStore from "../store";
 export default function Protect() {
   const [ff, setff] = useState("NA");
   const History = useHistory();
+  const AuthState = useStore((state) => state.loggedin);
   useEffect(() => {
-    axios
-      .get("/", { withCredentials: true })
-      .then((res) => {
-        console.log(res.data.user);
+    if (AuthState == "OK") {
+      History.push("/u/");
+    }
+    // axios
+    //   .get("/", { withCredentials: true })
+    //   .then((res) => {
+    //     console.log(res.data.user);
+    //     setff("OK");
+    //     History.push("/u/");
+    //     useStore.setState({
+    //       UserData: {
+    //         Name: res.data.user.Name,
+    //         Email: res.data.user.email,
+    //         Startigy: res.data.user.strategy,
+    //         usage: res.data.user.usage,
+    //         JoinData: moment(res.data.user.createdAt).format("Do MMMM YYYY"),
+    //       },
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     setff("NO");
+    //     console.log(err);
+    //   });
+  }, [AuthState]);
 
-        setff("OK");
-        History.push("/u/");
-        useStore.setState({
-          UserData: {
-            Name: res.data.user.Name,
-            Email: res.data.user.email,
-            Startigy: res.data.user.strategy,
-            JoinData: moment(res.data.user.createdAt).format("Do MMMM YYYY"),
-          },
-        });
-      })
-      .catch((err) => {
-        setff("NO");
-        console.log(err);
-      });
-  }, []);
-
-  if (ff == "NA") {
+  if (AuthState == "wait") {
     return <div></div>;
   } else if (ff == "OK") {
-    return "";
+    return <div></div>;
   } else if (ff == "NO") {
     return <LangingPage />;
+  } else {
+    return <div></div>;
   }
 }

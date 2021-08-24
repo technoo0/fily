@@ -2,6 +2,8 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import FolderCard from "./FolderCard";
+import useStore from "../../store";
+import FolderCardSkeleton from "./Skeleton/FolderCard";
 const useStyles = makeStyles((theme) => ({
   mainpaper: {
     // marginLeft: 170,
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function MainContent({ CardsNumber }) {
+  const folderLogging = useStore((state) => state.folderLogging);
   const classes = useStyles();
   return (
     <Grid
@@ -31,11 +34,17 @@ export default function MainContent({ CardsNumber }) {
       alignItems="center"
       spacing={2}
     >
-      {CardsNumber.map((Folder, index) => (
-        <Grid key={index} item>
-          <FolderCard data={Folder} />
-        </Grid>
-      ))}
+      {folderLogging
+        ? [...Array(4)].map((index) => (
+            <Grid key={index} item>
+              <FolderCardSkeleton />
+            </Grid>
+          ))
+        : CardsNumber.map((Folder, index) => (
+            <Grid key={index} item>
+              <FolderCard data={Folder} />
+            </Grid>
+          ))}
     </Grid>
   );
 }

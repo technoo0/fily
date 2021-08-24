@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 var File = require("../models/File");
+var Link = require("../models/link");
 const Folder = require("../models/Folder");
 const { isAuth } = require("../middlewares/Auth/CheckAuth");
 const { Op } = require("sequelize");
 const CheckIfNameExits = require("../utils/CheckifNameExits");
 const folderOps = require("./folderOps");
+
 //Folder
 router.post("/CreateFolder", isAuth, (req, res) => {
   Folder.findOne({
@@ -164,6 +166,23 @@ router.post("/Copyfile", isAuth, (req, res) => {
     });
 });
 
+router.get("/Downloadmyfile/:id", isAuth, (req, res) => {
+  // const file = path.resolve("./uploads/1ff11a9074c77981c84b3bfbf46778f0.jpg");
+  var id = req.params.id;
+  console.log("gogogogogogoogogogogoggogogogogogogogo");
+  File.findOne({
+    where: {
+      [Op.and]: [{ id: id }, { ownerId: req.user.id }],
+    },
+  }).then((file) => {
+    if (file) {
+      // Set disposition and send it.
+
+      res.download(file.path, file.name);
+    }
+  });
+});
+
 router.post("/AddToFav", isAuth, (req, res) => {
   File.findOne({
     where: {
@@ -202,6 +221,48 @@ router.post("/RemoveFromFav", isAuth, (req, res) => {
       } else {
         console.log(e);
         res.status(404);
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      res.status(400);
+    });
+});
+
+router.post("/CreateLink", isAuth, (req, res) => {
+  File.findOne({
+    where: {
+      [Op.and]: [{ id: req.body.id }, { ownerId: req.user.id }],
+    },
+  })
+    .then((myFile) => {
+      if (myFile) {
+        Link.findOrCreate({
+          where: {
+            [Op.and]: [{ FileId: myFile.id }, { ownerId: req.user.id }],
+          },
+          defaults: {
+            FileId: myFile.id,
+            ownerId: req.user.id,
+          },
+        })
+          .then((link) => {
+            myFile.acsses = "public";
+            myFile.save();
+            res.json({ link: link[0].id });
+          })
+          .catch((e) => {
+            console.log(e);
+            res.status(400);
+          });
+        // Link.create({
+        //   ownerId: req.user.id,
+        //   FileId: myFile.id,
+        // }).then((link) => {
+        //   res.json({ link: link.id });
+        // });
+      } else {
+        res.status(400);
       }
     })
     .catch((e) => {

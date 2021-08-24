@@ -1,10 +1,15 @@
 import create from "zustand";
 
 const useStore = create((set) => ({
+  fileLogging: "true",
+  folderLogging: "true",
+  recentlyLogging: "true",
+  loggedin: "wait",
   UserData: {
     Name: "",
     Email: "",
     Startigy: "local",
+    usage: 0,
     JoinData: new Date(Date.now()).toUTCString(),
   },
   UploadingStatus: false,
@@ -23,6 +28,10 @@ const useStore = create((set) => ({
   refreshCurrent: () => {
     console.log("Refresh");
   },
+
+  alertOpen: false,
+  alertType: "",
+  alertMsg: "",
 }));
 
 export default useStore;

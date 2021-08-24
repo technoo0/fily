@@ -9,6 +9,7 @@ const TwitterRoute = require("./routes/twitterRoute");
 const FilesRoute = require("./routes/Files");
 const UploadRoute = require("./routes/upload");
 const ops = require("./routes/ops");
+const ShareLink = require("./routes/ShareLink");
 const session = require("./config/session");
 var cors = require("cors");
 const app = express();
@@ -33,5 +34,6 @@ app.use("/auth/twitter", TwitterRoute);
 app.use("/get/", FilesRoute);
 app.use("/upload/", UploadRoute);
 app.use("/ops/", ops);
+app.use("/ShareLink/", ShareLink);
 
 app.listen(process.env.PORT || 4000);

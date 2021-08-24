@@ -31,7 +31,13 @@
 // }
 
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import Home from "./Views/Home";
 import Login from "./Views/Auth/Login";
 import SignIn from "./Views/Auth/SignIn";
@@ -39,36 +45,71 @@ import ForgetPass from "./Views/Auth/ForgetPass";
 import ResetPass from "./Views/Auth/ResetPass";
 import Protect from "./Views/Protect";
 import FolderPage from "./Views/Folder";
+import ShareFile from "./Views/ShareFile";
 import Test from "./Views/testing.jsx";
-
+import SnackbarAlert from "./components/FileMuneDiloge/SnakBarAlearts.jsx";
+import axios from "./Axios";
+import useStore from "./store";
+import moment from "moment";
 export default function App() {
+  const History = useHistory();
+  useEffect(() => {
+    axios
+      .get("/", { withCredentials: true })
+      .then((res) => {
+        console.log(res.data.user);
+
+        useStore.setState({ loggedin: "OK" });
+        // History.push("/u/");
+        useStore.setState({
+          UserData: {
+            Name: res.data.user.Name,
+            Email: res.data.user.email,
+            Startigy: res.data.user.strategy,
+            usage: res.data.user.usage,
+            JoinData: moment(res.data.user.createdAt).format("Do MMMM YYYY"),
+          },
+        });
+      })
+      .catch((err) => {
+        useStore.setState({ loggedin: "NO" });
+        History.push("/Login");
+        console.log(err);
+      });
+  }, []);
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Protect />
-        </Route>
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Protect />
+          </Route>
 
-        <Route path="/u">
-          <Home />
-        </Route>
-        <Route path="/Test">
-          <Test />
-        </Route>
+          <Route path="/u">
+            <Home />
+          </Route>
+          <Route path="/Test">
+            <Test />
+          </Route>
 
-        <Route path="/Login">
-          <Login />
-        </Route>
-        <Route path="/SignIn">
-          <SignIn />
-        </Route>
-        <Route path="/ForgetPassword">
-          <ForgetPass />
-        </Route>
-        <Route path="/ResetPassword/:id/:token">
-          <ResetPass />
-        </Route>
-      </Switch>
-    </Router>
+          <Route path="/Login">
+            <Login />
+          </Route>
+          <Route path="/SignIn">
+            <SignIn />
+          </Route>
+          <Route path="/ForgetPassword">
+            <ForgetPass />
+          </Route>
+          <Route path="/ResetPassword/:id/:token">
+            <ResetPass />
+          </Route>
+          <Route path="/sharelink/:id">
+            <ShareFile />
+          </Route>
+        </Switch>
+      </Router>
+      <SnackbarAlert />
+    </div>
   );
 }

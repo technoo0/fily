@@ -1,4 +1,4 @@
-const File = require("../models/File");
+const Folder = require("../models/Folder");
 
 const { Op } = require("sequelize");
 

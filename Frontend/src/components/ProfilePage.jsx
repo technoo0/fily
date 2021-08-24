@@ -134,7 +134,7 @@ export default function AlertDialog({ open, CloseProfile }) {
                   <Box width="100%" mr={1}>
                     <BorderLinearProgress
                       variant="determinate"
-                      value={20}
+                      value={(UserData.usage / 1e9) * 100}
                       thickness={4}
                     />
                   </Box>
@@ -142,10 +142,17 @@ export default function AlertDialog({ open, CloseProfile }) {
                     <Typography
                       variant="body2"
                       color="textSecondary"
-                    >{`${Math.round(20)}%`}</Typography>
+                    >{`${Math.round(
+                      (UserData.usage / 1e9) * 100
+                    )}%`}</Typography>
                   </Box>
                 </Box>
               </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography>
+                You have 1 GB of storage {UserData.usage / 1e9}{" "}
+              </Typography>
             </Grid>
             <Grid item xs={4}>
               {UserData.Startigy == "local" ? (

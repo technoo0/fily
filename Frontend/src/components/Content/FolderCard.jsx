@@ -5,6 +5,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import RenameDialog from "../FileMuneDiloge/RenameDialoge";
+
 import CopyMoveDialog from "../FileMuneDiloge/CopyMoveDialog";
 import {
   Visibility,
@@ -85,7 +86,11 @@ export default function OutlinedCard({ data }) {
   const History = useHistory();
   const ChangeName = useStore((state) => state.ChangeName);
   const goToFolder = () => {
-    History.push(`/u/folder/${data.id}`);
+    if (data.OpenMe) {
+      History.push(`/u/folder/${data.OpenMe}`);
+    } else {
+      History.push(`/u/folder/${data.id}`);
+    }
     ChangeName(data.name);
   };
   const handleClick = (event) => {

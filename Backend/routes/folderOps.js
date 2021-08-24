@@ -68,7 +68,7 @@ router.post("/Movefolder", isAuth, (req, res) => {
   })
     .then((folder) => {
       if (folder) {
-        CheckIfFolderNameExits(folder.parentId, req.body.name).then((gg) => {
+        CheckIfFolderNameExits(req.body.folderId, folder.name).then((gg) => {
           if (gg) {
             res.status(400);
             res.json({ msg: "name already exits" });
@@ -99,6 +99,22 @@ router.post("/Copyfolder", isAuth, (req, res) => {
     .then((myFile) => {
       if (myFile) {
         //TODO :add shortcut logic
+        CheckIfFolderNameExits(req.body.folderId, myFile.name).then((gg) => {
+          if (gg) {
+            res.status(400);
+            res.json({ msg: "name already exits" });
+          } else {
+            //req.body.folderId
+            Folder.create({
+              name: myFile.name,
+              parentId: req.body.folderId,
+              ownerId: req.user.id,
+              OpenMe: myFile.id,
+            }).then((e) => {
+              res.json({ msg: "OK" });
+            });
+          }
+        });
         console.log(myFile);
       }
     })

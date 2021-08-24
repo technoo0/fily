@@ -116,11 +116,13 @@ const getFavoriteFolderdata = () => {
   console.log(data1, data2);
   if (data1.length == 0 && data2.length == 0) {
     console.log("opopopop2");
+    useStore.setState({ fileLogging: true });
     axios
       .get("/get/FavoriteFiles", {
         withCredentials: true,
       })
       .then((files) => {
+        useStore.setState({ fileLogging: false });
         if (files.data.files) {
           console.log("files opop");
           useStore.setState({
@@ -128,12 +130,13 @@ const getFavoriteFolderdata = () => {
           });
         }
       });
-
+    useStore.setState({ folderLogging: true });
     axios
       .get("/get/FavoriteFolders", {
         withCredentials: true,
       })
       .then((files) => {
+        useStore.setState({ folderLogging: false });
         if (files.data.files) {
           useStore.setState({
             FavoriteFolders: files.data.files,
@@ -195,10 +198,12 @@ const UpdateHome = () => {
 };
 const getFiles = async (folderid) => {
   try {
+    useStore.setState({ fileLogging: true });
     const files = await axios.get(`/get/files/${folderid}`, {
       withCredentials: true,
     });
     console.log(files.data.files);
+    useStore.setState({ fileLogging: false });
     return files.data.files;
   } catch (e) {
     console.log(e);
@@ -206,30 +211,36 @@ const getFiles = async (folderid) => {
 };
 
 const getrecentFiles = async () => {
+  useStore.setState({ recentlyLogging: true });
   const files = await axios
     .get(`/get/recentlyadded/`, {
       withCredentials: true,
     })
     .then((res) => {
       //   console.log("rec", files);
+      useStore.setState({ recentlyLogging: false });
       useStore.setState({
         recentlyadded: res.data.files,
       });
     })
     .catch((e) => {
+      useStore.setState({ recentlyLogging: false });
       console.log(e);
     });
 };
 
 const getFolders = async (folderid) => {
   try {
+    useStore.setState({ folderLogging: true });
     const Response = await axios.get(`/get/folders/${folderid}`, {
       withCredentials: true,
     });
     console.log(Response.data.files);
+    useStore.setState({ folderLogging: false });
     return Response.data.files;
   } catch (e) {
     console.log(e);
+    useStore.setState({ folderLogging: false });
   }
 };
 

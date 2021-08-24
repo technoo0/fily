@@ -24,7 +24,7 @@ const FolderStructer = (props) => {
   return (
     <TreeItem nodeId={props.data.id} label={props.data.name}>
       {Files.map((File, index) =>
-        props.hidethis == File.id ? (
+        props.hidethis == File.id || File.OpenMe ? (
           ""
         ) : (
           <FolderStructer

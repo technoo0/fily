@@ -29,6 +29,11 @@ const User = sequelize.define(
       defaultValue: UUIDV4,
       allowNull: false,
     },
+    usage: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false,
+    },
   },
   {
     // Other model options go here
@@ -47,6 +52,6 @@ User.afterCreate(async (user, options) => {
 
 // `sequelize.define` also returns the model
 // console.log(User === sequelize.models.User); // true
-sequelize.sync();
+sequelize.sync({});
 
 module.exports = User;
