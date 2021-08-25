@@ -38,9 +38,9 @@ export default function Protect() {
 
   if (AuthState == "wait") {
     return <div></div>;
-  } else if (ff == "OK") {
+  } else if (AuthState == "OK") {
     return <div></div>;
-  } else if (ff == "NO") {
+  } else if (AuthState == "NO") {
     return <LangingPage />;
   } else {
     return <div></div>;

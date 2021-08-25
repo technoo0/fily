@@ -1,28 +1,38 @@
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
+  host: "us2.smtp.mailhostbox.com",
   port: 587,
+
   auth: {
-    user: "brenda.sauer10@ethereal.email",
-    pass: "8bvAqVQpgfufvkeH8C",
+    user: "noreply@fily.tech",
+    pass: "n*YImXx0",
   },
+  tls: { minVersion: "TLSv1" },
 });
+
 const sendmail = async (em, link) => {
   // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"noreplay" <brenda.sauer10@ethereal.email>', // sender address
-    to: em, // list of receivers
-    subject: "Reset Password", // Subject line
-    text: `Link :${link} `, // plain text body
-    html: "<b>Hello world?</b>", // html body
-  });
+  console.log("--*-**-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*");
+  console.log(transporter);
+  console.log("--*-**-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*");
+  try {
+    let info = await transporter.sendMail({
+      from: '"noreplay" <noreply@fily.tech>', // sender address
+      to: em, // list of receivers
+      subject: "Reset Password", // Subject line
+      text: `Go to this link to change your password :${link} `, // plain text body
+      // html: `<div><p>Go to this link to change your password</p> <br/> <a herf=${link} >here</a></div>`, // html body
+    });
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  } catch (e) {
+    console.log("--------------------error---------------------");
+    console.log(e);
+  }
 };
 
 module.exports = sendmail;

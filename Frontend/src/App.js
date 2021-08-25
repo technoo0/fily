@@ -73,7 +73,7 @@ export default function App() {
       })
       .catch((err) => {
         useStore.setState({ loggedin: "NO" });
-        History.push("/Login");
+        // History.push("/Login");
         console.log(err);
       });
   }, []);
