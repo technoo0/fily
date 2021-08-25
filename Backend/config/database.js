@@ -12,6 +12,7 @@ if (process.env.NODE_ENV == "production") {
       host: process.env.DATABASEHOST || "localhost",
       port: process.env.DATABASEPORT || null,
       dialect: "postgres",
+      ssl: true,
     }
   );
 }
