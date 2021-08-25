@@ -4,7 +4,7 @@ if (process.env.NODE_ENV == "production") {
   console.log("we are production -*-*-*-*-**-*-*-*-*");
   try {
     sequelize = new Sequelize(process.env.DATABASE_URL, {
-      dialect: "postgres",
+      native: true,
       ssl: true,
     });
   } catch (e) {
@@ -20,6 +20,7 @@ if (process.env.NODE_ENV == "production") {
         host: process.env.DATABASEHOST || "localhost",
         port: process.env.DATABASEPORT || null,
         dialect: "postgres",
+
         ssl: true,
       }
     );
