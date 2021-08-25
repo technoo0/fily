@@ -4,8 +4,9 @@ if (process.env.NODE_ENV == "production") {
   console.log("we are production -*-*-*-*-**-*-*-*-*");
   try {
     sequelize = new Sequelize(process.env.DATABASE_URL, {
-      native: true,
-      ssl: true,
+      dialectOptions: {
+        ssl: true,
+      },
     });
   } catch (e) {
     console.log(e);
