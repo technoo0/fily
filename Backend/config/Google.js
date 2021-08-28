@@ -34,7 +34,7 @@ passport.use(
           console.log("rrrrrrrrrr");
         });
       console.log(profile);
-      cb(null, profile);
+      return cb(null, profile);
     }
   )
 );
