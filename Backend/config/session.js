@@ -6,6 +6,9 @@ const mysession = session({
   store: new SequelizeStore({
     db: sequelize,
   }),
+  cookie: {
+    sameSite: "none",
+  },
   saveUninitialized: false,
   resave: false, // we support the touch method so per the express-session docs this should be set to false
   proxy: true, // if you do SSL outside of node.
