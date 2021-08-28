@@ -31,7 +31,7 @@ export default function ShareDiloge({ open, handleClose, link }) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Rename</DialogTitle>
+        <DialogTitle id="form-dialog-title">Share</DialogTitle>
         <DialogContent style={{ width: 300 }}>
           <Grid container direction={"row"} alignItems={"center"}>
             <Grid item xs={11}>

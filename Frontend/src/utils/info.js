@@ -1,6 +1,6 @@
 const info = {
   BackendUrl: "https://f1ly.herokuapp.com",
-  ForntEbdUrl: "http://localhost:3000",
+  ForntEbdUrl: "https://www.fily.tech",
 };
 
 export default info;

@@ -31,7 +31,7 @@ export default function MyAppBar() {
           <img className={classes.mainlogo} src={Logo} alt="Fily Logo" />
         </Grid>
         <Grid item xs={9}>
-          <SearchBar />
+          {/* <SearchBar /> */}
         </Grid>
       </Grid>
     </AppBar>

@@ -12,12 +12,13 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-
+import info from "../../utils/info";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/Logo.svg";
 import GoogleLogo from "../../images/Google.svg";
 import { useState } from "react";
+
 import axios from "../../Axios";
 const UseStyles = makeStyles((theme) => ({
   //   Forget: {
@@ -116,6 +117,7 @@ export default function Login() {
         console.log("eeeeees", res);
         if (res.data.msg == "OK") {
           history.push("/");
+          window.location.reload();
         }
       })
       .catch((e) => {
@@ -144,10 +146,10 @@ export default function Login() {
   };
 
   const TwitterHandel = () => {
-    window.location.href = "http://localhost:4000/auth/twitter";
+    window.location.href = `${info.BackendUrl}/auth/twitter`;
   };
   const GoogleHandel = () => {
-    window.location.href = "http://localhost:4000/auth/google";
+    window.location.href = `${info.BackendUrl}/auth/google`;
   };
   return (
     <Grid

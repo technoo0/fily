@@ -60,9 +60,13 @@ function MyApp(props) {
       <p>
         Page {pageNumber} of {numPages}
       </p> */}
-      <Document file={props.link} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page width={900} className={classes.page} pageNumber={pageNumber} />
-      </Document>
+      {props.link ? (
+        <Document file={props.link} onLoadSuccess={onDocumentLoadSuccess}>
+          <Page width={900} className={classes.page} pageNumber={pageNumber} />
+        </Document>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

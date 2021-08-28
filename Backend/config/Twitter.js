@@ -7,7 +7,7 @@ passport.use(
     {
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: "http://localhost:4000/auth/twitter/callback",
+      callbackURL: "https://f1ly.herokuapp.com/auth/twitter/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOne({

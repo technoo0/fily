@@ -75,7 +75,12 @@ export default function App() {
       .catch((err) => {
         useStore.setState({ loggedin: "NO" });
         // History.push("/Login");
-        console.log(err);
+        if (window.location.pathname.includes("/u/")) {
+          window.location.href = "https://www.fily.tech/Login";
+        } else {
+          console.log("lol no");
+        }
+        window.console.log(err);
       });
   }, []);
   return (

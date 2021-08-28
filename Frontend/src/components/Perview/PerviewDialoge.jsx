@@ -191,6 +191,18 @@ export default function PerviewDialoge({
               ) : (
                 ""
               )}
+
+              {!type.includes("audio") &&
+              !type.includes("pdf") &&
+              !type.includes("text") &&
+              !type.includes("video") &&
+              !type.includes("image") ? (
+                <Grid item>
+                  <Typography>Sorry , we can't preview this formate</Typography>
+                </Grid>
+              ) : (
+                ""
+              )}
             </Grid>
           </Grid>
         </DialogContent>
