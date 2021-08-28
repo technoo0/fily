@@ -11,7 +11,6 @@ router.get(
   "/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
-    console.log(req);
     // Successful authentication, redirect home.
     res.redirect("https://www.fily.tech");
   }

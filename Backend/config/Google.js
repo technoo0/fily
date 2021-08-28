@@ -30,9 +30,9 @@ passport.use(
           return cb(null, user);
         })
         .catch((err) => {
-          cb(err);
           console.log("rrrrrrrrrr");
           console.log(err);
+          cb(err);
         });
       console.log(profile);
       return cb(null, profile);
