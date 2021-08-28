@@ -1,5 +1,5 @@
 const info = {
-  BackendUrl: "http://localhost:4000",
+  BackendUrl: "https://f1ly.herokuapp.com",
   ForntEbdUrl: "http://localhost:3000",
 };
 
