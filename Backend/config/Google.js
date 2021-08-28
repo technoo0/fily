@@ -32,10 +32,8 @@ passport.use(
         .catch((err) => {
           console.log("rrrrrrrrrr");
           console.log(err);
-          res.statusCode = 404;
-          res.setHeader("Content-Type", "text/plain");
-          res.end("Cannot " + req.method + " " + req.url);
-          // cb(err);
+
+          return cb(err);
         });
       console.log(profile);
       return cb(null, profile);
