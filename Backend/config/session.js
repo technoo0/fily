@@ -7,6 +7,7 @@ const mysession = session({
     db: sequelize,
   }),
   cookie: {
+    secure: true,
     sameSite: "none",
   },
   saveUninitialized: false,
