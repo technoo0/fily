@@ -32,6 +32,7 @@ passport.use(
         .catch((err) => {
           cb(err);
           console.log("rrrrrrrrrr");
+          console.log(err);
         });
       console.log(profile);
       return cb(null, profile);
