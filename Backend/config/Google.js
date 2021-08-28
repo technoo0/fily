@@ -25,9 +25,11 @@ passport.use(
             }).then((user) => {
               return cb(null, user);
             });
-          } //the email not regestred
+          } else {
+            //the email not regestred
 
-          return cb(null, user);
+            return cb(null, user);
+          }
         })
         .catch((err) => {
           console.log("rrrrrrrrrr");
