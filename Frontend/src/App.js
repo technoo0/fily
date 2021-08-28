@@ -54,6 +54,7 @@ import moment from "moment";
 export default function App() {
   const History = useHistory();
   useEffect(() => {
+    console.log("checking auth");
     axios
       .get("/", { withCredentials: true })
       .then((res) => {
