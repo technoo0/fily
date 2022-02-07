@@ -7,6 +7,10 @@ on:
     branches:
       - main
 
+env:
+  REACT_APP_BASE_URL: https://www.fily.tech/
+  REACT_APP_API_URL: https://f1ly.herokuapp.com/
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
