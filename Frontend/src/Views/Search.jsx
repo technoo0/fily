@@ -35,7 +35,7 @@ export default function HomePage() {
   const query = new URLSearchParams(search).get("q");
   const classes = useStyles();
   const History = useHistory();
-
+  //d
   const CurrentName = useStore((state) => state.CurrentName);
   const ChangeName = useStore((state) => state.ChangeName);
 
