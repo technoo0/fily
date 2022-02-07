@@ -2,29 +2,31 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting
-on: push
-  branches : [main]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-    
-    - name: Set Node.js
-      uses: actions/setup-node@master
-      with:
-        node-version: 12
-    
-    - name: Install dependencies
-      working-directory: ./Frontend
-      run: npm ci && npm run build
-    
-    - name: Deploy to firebase hosting
-      working-directory: ./Frontend
-      uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        repoToken: "${{ secrets.GITHUB_TOKEN }}"
-        firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FILY_23FD9 }}"
-        projectId: fily-23fd9
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Set Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        working-directory: ./Frontend
+        run: npm ci && npm run build
+
+      - name: Deploy to firebase hosting
+        working-directory: ./Frontend
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FILY_23FD9 }}"
+          projectId: fily-23fd9
