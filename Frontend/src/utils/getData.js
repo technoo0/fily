@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import useStore from "../store";
 import axios from "../Axios";
 const getMainFolderId = () => {
@@ -212,7 +213,7 @@ const getFiles = async (folderid) => {
 
 const getrecentFiles = async () => {
   useStore.setState({ recentlyLogging: true });
-  const files = await axios
+  await axios
     .get(`/get/recentlyadded/`, {
       withCredentials: true,
     })

@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import EditIcon from "@material-ui/icons/Edit";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Grid, Typography, Box, LinearProgress } from "@material-ui/core";
@@ -73,7 +71,7 @@ export default function AlertDialog({ open, CloseProfile }) {
   const Logout = () => {
     axios.post("/u/logout", {}, { withCredentials: true }).then((res) => {
       console.log(res);
-      if (res.data.msg == "You are loged out") {
+      if (res.data.msg === "You are loged out") {
         console.log(res);
         history.push("/");
         window.location.reload();
@@ -155,7 +153,7 @@ export default function AlertDialog({ open, CloseProfile }) {
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              {UserData.Startigy == "local" ? (
+              {UserData.Startigy === "local" ? (
                 <Button
                   onClick={OpenEdit}
                   className={classes.button}

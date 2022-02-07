@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
 import React from "react";
 import validator from "validator";
 import MyAlert from "./myalert";
@@ -73,11 +75,11 @@ export default function Login(props) {
   const [Lodding, SetLodding] = useState(false);
   const [showAlert, SetshowAlert] = useState(false);
   const [ErrorMassage, SetErrorMassage] = useState("");
-  const [Email, SetEmail] = useState("");
+
   const { id, token } = useParams();
 
   const [AlertType, SetAlertType] = useState("error");
-  const [disableB, SetdisableB] = useState("");
+
   const [Pass, SetPass] = useState("");
   const [CPass, SetCPass] = useState("");
   const [PasswordError, SetPasswordError] = useState(false);

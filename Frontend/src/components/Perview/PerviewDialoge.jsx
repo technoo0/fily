@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
+
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { Divider, Grid, IconButton, Typography } from "@material-ui/core";
+
+import { Grid, IconButton, Typography } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import VideoJS from "./VideoJS";
 import axios from "../../Axios";
@@ -22,13 +21,6 @@ export default function PerviewDialoge({
   type,
   fileName,
 }) {
-  const [newName, SetNewName] = useState("");
-  // const NewNameRef = useRef();
-  const handleChange = (e) => {
-    console.log(e.target.value);
-
-    SetNewName(e.target.value);
-  };
   const [textState, settextState] = useState("");
   const readText = async () => {
     const res = await axios.get(`${info.BackendUrl}/ops/Downloadmyfile/${id}`, {
@@ -143,6 +135,7 @@ export default function PerviewDialoge({
               {type.includes("image") ? (
                 <Grid item>
                   <img
+                    alt="file type"
                     style={{ maxHeight: "100%", maxWidth: "100%" }}
                     src={`${info.BackendUrl}/ops/Downloadmyfile/${id}`}
                   ></img>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -77,7 +78,7 @@ export default function AlertDialog({ open, CloseProfile }) {
         })
         .catch((e) => {
           if (e.response.data.msg) {
-            if (e.response.data.msg == "name error") {
+            if (e.response.data.msg === "name error") {
               console.log(e.response.data.msg);
               setNameError(true);
             }

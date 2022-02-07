@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -101,7 +103,7 @@ export default function AlertDialog({ open, CloseProfile }) {
 
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
-    if (e.target.name == "email") {
+    if (e.target.name === "email") {
       SetEmail(e.target.value);
     } else if (e.target.name == "name") {
       SetName(e.target.value);
@@ -271,7 +273,6 @@ export default function AlertDialog({ open, CloseProfile }) {
                   helperText={errors.Name ? "required" : ""}
                   onChange={handleChange}
                   className={classes.inputBox}
-                  label=""
                 />
               </Grid>
             </Grid>
@@ -299,7 +300,6 @@ export default function AlertDialog({ open, CloseProfile }) {
                   onChange={handleChange}
                   className={classes.inputBox}
                   defaultValue={UserData.Email}
-                  label=""
                 />
               </Grid>
             </Grid>
@@ -330,7 +330,6 @@ export default function AlertDialog({ open, CloseProfile }) {
                     errors.Password ? "must have a-z A-Z 0-9 @#$%.&" : ""
                   }
                   className={classes.inputBox}
-                  label=""
                 />
               </Grid>
             </Grid>
@@ -356,7 +355,6 @@ export default function AlertDialog({ open, CloseProfile }) {
                   onChange={handleChange}
                   type={"password"}
                   className={classes.inputBox}
-                  label=""
                 />
               </Grid>
             </Grid>

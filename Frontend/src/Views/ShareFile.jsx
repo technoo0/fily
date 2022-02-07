@@ -1,25 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import {
-  Grid,
-  Paper,
-  Button,
-  TextField,
-  InputAdornment,
-  IconButton,
-  Typography,
-  CircularProgress,
-} from "@material-ui/core";
+import { Grid, Paper, Button, Typography } from "@material-ui/core";
 import moment from "moment";
-import { Link, useHistory, useParams } from "react-router-dom";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { GetFileData, DownloadFileFromLink } from "../utils/linkops";
-import TwitterIcon from "@material-ui/icons/Twitter";
+import { Link, useParams } from "react-router-dom";
+
+import { GetFileData } from "../utils/linkops";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../images/Logo.svg";
 import info from "../utils/info";
 import { useState } from "react";
-import axios from "../Axios";
+
 const UseStyles = makeStyles((theme) => ({
   griditem: {
     marginBottom: 15,
@@ -97,7 +88,6 @@ export default function Login() {
   const classes = UseStyles();
   const [FileData, SetFileData] = useState(false);
 
-  const history = useHistory();
   const { id } = useParams();
   useEffect(() => {
     GetFileData(id).then((file) => {

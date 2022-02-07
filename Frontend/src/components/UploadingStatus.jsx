@@ -1,4 +1,3 @@
-import React, { useState, useRef, useEffect } from "react";
 import useStore from "../store";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -36,7 +35,7 @@ export default function SimpleAccordion() {
   const activeUploads = useStore((state) => state.activeUploads);
   const UploadingStatus = useStore((state) => state.UploadingStatus);
   const hideIfDone = () => {
-    if (activeUploads == 0) {
+    if (activeUploads === 0) {
       useStore.setState({ UploadingStatus: false, UploadingProsses: [] });
     }
   };
@@ -59,7 +58,7 @@ export default function SimpleAccordion() {
                 </Typography>
               </Grid>
               <Grid item xs={1}>
-                {activeUploads == 0 ? (
+                {activeUploads === 0 ? (
                   <IconButton onClick={hideIfDone}>
                     <CancelIcon className={classes.icon} />
                   </IconButton>

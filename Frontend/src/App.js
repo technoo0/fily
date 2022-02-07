@@ -31,20 +31,14 @@
 // }
 
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Views/Home";
 import Login from "./Views/Auth/Login";
 import SignIn from "./Views/Auth/SignIn";
 import ForgetPass from "./Views/Auth/ForgetPass";
 import ResetPass from "./Views/Auth/ResetPass";
 import Protect from "./Views/Protect";
-import FolderPage from "./Views/Folder";
+
 import ShareFile from "./Views/ShareFile";
 import Test from "./Views/testing.jsx";
 import SnackbarAlert from "./components/FileMuneDiloge/SnakBarAlearts.jsx";
@@ -52,7 +46,6 @@ import axios from "./Axios";
 import useStore from "./store";
 import moment from "moment";
 export default function App() {
-  const History = useHistory();
   useEffect(() => {
     console.log("checking auth");
     axios

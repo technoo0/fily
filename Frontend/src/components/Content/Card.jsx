@@ -20,7 +20,6 @@ import {
 import {
   CardActionArea,
   CardMedia,
-  Grid,
   Menu,
   MenuItem,
   ListItemIcon,
@@ -29,8 +28,6 @@ import {
 import {
   DeletFile,
   ShareFile,
-  RenameFile,
-  MoveFile,
   RmFromFav,
   DownloadFile,
   AddToFav,
@@ -73,10 +70,7 @@ const useStyles = makeStyles({
     color: "#f5f5f9",
   },
 });
-const initialState = {
-  mouseX: null,
-  mouseY: null,
-};
+
 export default function OutlinedCard({ data }) {
   const [state, setState] = React.useState({
     mouseX: null,

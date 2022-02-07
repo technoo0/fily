@@ -5,17 +5,16 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Button,
 } from "@material-ui/core";
 //import "./Upload.css";
 import { makeStyles } from "@material-ui/core";
-import logo from "../images/upload.svg";
+
 import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
 import Profile from "./ProfilePage";
 import AddFolder from "./AddFolder";
 import Toolbar from "@material-ui/core/Toolbar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import UploadButtom from "./UploadButtom";
 import { useHistory } from "react-router-dom";

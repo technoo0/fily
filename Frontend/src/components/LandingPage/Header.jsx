@@ -73,7 +73,7 @@ export default function Header() {
         </Grid>
       </Grid>
       <Grid item xs={10} sm={8} md={7} lg={4} xl={3}>
-        <img draggable={false} width={"100%"} src={Logo} />
+        <img draggable={false} width={"100%"} src={Logo} alt={"Fily logo"} />
       </Grid>
     </Grid>
   );

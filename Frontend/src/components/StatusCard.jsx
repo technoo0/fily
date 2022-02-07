@@ -81,9 +81,9 @@ export default function StatusCard(props) {
 
         <Grid item xs={3} container alignItems={"center"} direction={"row"}>
           <Grid item xs={6}>
-            {props.status == "active" ? (
+            {props.status === "active" ? (
               <CircularProgressWithLabel value={props.value} />
-            ) : props.status == "canceled" ? (
+            ) : props.status === "canceled" ? (
               <Typography>Canceled</Typography>
             ) : (
               <Typography>done</Typography>

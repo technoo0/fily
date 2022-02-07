@@ -1,12 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import {
-  Grid,
-  IconButton,
-  makeStyles,
-  Typography,
-  withStyles,
-} from "@material-ui/core";
+import { Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
 import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp";
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp";
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 function MyApp(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const canvasRef = useRef();
+
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }

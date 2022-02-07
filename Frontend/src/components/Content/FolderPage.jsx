@@ -1,10 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Grid,
   Typography,
   Toolbar,
   Divider,
-  Button,
-  Icon,
   IconButton,
   Paper,
 } from "@material-ui/core";
@@ -15,7 +14,7 @@ import MainContent from "./MainContent";
 import FoldersArray from "./FoldersArray";
 import useStore from "../../store";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   mainpaper: {
     width: "87%",
@@ -61,7 +60,7 @@ export default function HomePage() {
       refreshCurrent: Refreshme,
     });
     // console.log("Curent Folder", id);
-    if (CurrentName == "") {
+    if (CurrentName === "") {
       //   console.log("ohoh");
 
       getFolderData(id).then((data) => {

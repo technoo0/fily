@@ -1,21 +1,11 @@
-import {
-  Grid,
-  Typography,
-  Toolbar,
-  Divider,
-  Button,
-  Icon,
-  IconButton,
-  Paper,
-} from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { Grid, Typography, Toolbar } from "@material-ui/core";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFavoriteFolderdata, RefresFav } from "../utils/getData";
 import MainContent from "../components/Content/MainContent";
 import FoldersArray from "../components/Content/FoldersArray";
 import useStore from "../store";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Link, useHistory, useParams } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   mainpaper: {
     width: "87%",
@@ -28,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
   const classes = useStyles();
 
-  const History = useHistory();
   //   const add = () => {
   //     AddName("ACACACC");
   //   };

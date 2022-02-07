@@ -1,6 +1,5 @@
 import useStore from "../store";
 import axios from "../Axios";
-import info from "../utils/info";
 
 const GetFileData = async (id) => {
   try {

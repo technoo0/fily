@@ -1,16 +1,14 @@
-import React, { useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Grid, IconButton } from "@material-ui/core";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 
 export default function ShareDiloge({ open, handleClose, link }) {
-  const [newName, SetNewName] = useState("");
   // const NewNameRef = useRef();
 
   const CopyLink = () => {

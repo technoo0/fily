@@ -1,11 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
 import React, { useEffect } from "react";
 import {
   Grid,
   Paper,
   Button,
   TextField,
-  InputAdornment,
-  IconButton,
   Typography,
   CircularProgress,
 } from "@material-ui/core";
@@ -92,7 +92,7 @@ const UseStyles = makeStyles((theme) => ({
 export default function Login() {
   const history = useHistory();
   const classes = UseStyles();
-  const [ShowPass, SetShowPass] = useState(false);
+
   const [Lodding, SetLodding] = useState(false);
   const [Name, SetName] = useState("");
   const [Email, SetEmail] = useState("");
@@ -273,7 +273,7 @@ export default function Login() {
                   </Grid>
                   <Grid item>
                     <TextField
-                      type={ShowPass ? "text" : "password"}
+                      type={"password"}
                       error={PasswordError}
                       helperText={
                         PasswordError ? "must have a-z A-Z 0-9 @#$%.&" : ""
@@ -290,7 +290,7 @@ export default function Login() {
                     <TextField
                       error={CPasswordError}
                       helperText={CPasswordError ? "Passwords don't match" : ""}
-                      type={ShowPass ? "text" : "password"}
+                      type={"password"}
                       label="Confirm Password"
                       id="cPassword"
                       fullWidth

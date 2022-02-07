@@ -8,12 +8,7 @@ import Favorite from "../Views/Favorite";
 import Search from "../Views/Search";
 import Toolbar from "@material-ui/core/Toolbar";
 import UploadingStatus from "../components/UploadingStatus";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useRouteMatch,
-} from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -26,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
   return (
     <div className={classes.root}>
       <MyAppBar />

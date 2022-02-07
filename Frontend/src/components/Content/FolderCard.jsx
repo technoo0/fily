@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import RenameDialog from "../FileMuneDiloge/RenameDialoge";
 
 import CopyMoveDialog from "../FileMuneDiloge/CopyMoveDialog";
 import {
-  Visibility,
   Edit,
   Folder,
   FileCopy,
   Delete,
-  GetApp,
   Share,
   Favorite,
 } from "@material-ui/icons";
 import {
   CardActionArea,
-  CardMedia,
   CardContent,
   Grid,
   Menu,
@@ -27,14 +24,7 @@ import {
   ListItemIcon,
   SvgIcon,
 } from "@material-ui/core";
-import {
-  DeletFolder,
-  RenameFolder,
-  MoveFolder,
-  CopyFolder,
-  AddToFav,
-  RmFromFav,
-} from "../../utils/FolderOprations";
+import { DeletFolder, AddToFav, RmFromFav } from "../../utils/FolderOprations";
 import HtmlTooltip from "./htmlToolTip";
 import FolderIcon from "@material-ui/icons/Folder";
 import moment from "moment";
@@ -74,10 +64,7 @@ const useStyles = makeStyles({
     color: "#f5f5f9",
   },
 });
-const initialState = {
-  mouseX: null,
-  mouseY: null,
-};
+
 export default function OutlinedCard({ data }) {
   const [state, setState] = React.useState({
     mouseX: null,
@@ -119,13 +106,6 @@ export default function OutlinedCard({ data }) {
     handleClose();
   };
   const classes = useStyles();
-  const trimName = (name) => {
-    if (name.length > 17) {
-      return name.slice(0, 16) + "....";
-    } else {
-      return name;
-    }
-  };
 
   //DeletFile, RenameFile, MoveFile, CopyFile
   const DeletFileHandle = () => {

@@ -1,19 +1,20 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import Cover from "../images/LangingPage.svg";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Grid, Paper, Typography, Link } from "@material-ui/core";
-import ScreenShot from "../images/Capture.JPG";
+import { Grid, Paper, Typography, Link } from "@material-ui/core";
+
 import ScreenShot1 from "../images/Screenshot1.png";
 import ScreenShot2 from "../images/Screenshot2.png";
 import ScreenShot3 from "../images/Screenshot3.png";
 import ScreenShot4 from "../images/Screenshot4.png";
 import ScreenShot5 from "../images/Screenshot5.png";
-import ScreenShot6 from "../images/Screenshot6.png";
+
 import ScreenShot7 from "../images/Screenshot7.png";
 import ScreenShot8 from "../images/Screenshot8.png";
-import ScreenShot9 from "../images/Screenshot9.png";
+
 import Header from "../components/LandingPage/Header";
-import { Email } from "@material-ui/icons";
+
 const UseStyles = makeStyles((theme) => ({
   whiteText: {
     color: "#ffffff",
@@ -84,7 +85,12 @@ export default function LandingPage() {
   const classes = UseStyles();
   return (
     <div className={classes.main}>
-      <img className={classes.im} draggable={false} src={Cover} />
+      <img
+        className={classes.im}
+        draggable={false}
+        src={Cover}
+        alt={"cover "}
+      />
       <Grid
         container
         direction={"column"}

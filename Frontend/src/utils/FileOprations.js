@@ -1,7 +1,7 @@
+/* eslint-disable eqeqeq */
 import useStore from "../store";
 import axios from "../Axios";
 import info from "../utils/info";
-import FileDownload from "js-file-download";
 const DeletFile = (id) => {
   axios
     .post("/ops/deletfile", { id }, { withCredentials: true })

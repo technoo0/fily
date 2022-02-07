@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "./Card";
 import CardSkeleton from "./Skeleton/Card";
 import useStore from "../../store";
-import Skeleton from "@material-ui/lab/Skeleton";
 const useStyles = makeStyles((theme) => ({}));
 export default function MainContent({ CardsNumber, recently }) {
   const classes = useStyles();

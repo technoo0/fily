@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Grid, TextField } from "@material-ui/core";
+import { AppBar, Grid } from "@material-ui/core";
 import Logo from "../images/FilyLogo.svg";
 import { makeStyles } from "@material-ui/core";
 import SearchBar from "./Content/SearchBar";

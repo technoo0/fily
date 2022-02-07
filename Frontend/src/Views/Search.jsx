@@ -3,16 +3,14 @@ import {
   Typography,
   Toolbar,
   Divider,
-  Button,
-  Icon,
   IconButton,
   Paper,
 } from "@material-ui/core";
 
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { getFiles, getFolders, getFolderData } from "../utils/getData";
-import { Link, useHistory, useParams, useLocation } from "react-router-dom";
+
+import { useHistory, useLocation } from "react-router-dom";
 
 import MainContent from "../components/Content/MainContent";
 import FoldersArray from "../components/Content/FoldersArray";
@@ -36,8 +34,6 @@ export default function HomePage() {
   const classes = useStyles();
   const History = useHistory();
   //d
-  const CurrentName = useStore((state) => state.CurrentName);
-  const ChangeName = useStore((state) => state.ChangeName);
 
   const [Files, SetFiles] = useState([]);
   const [Folders, SetFolders] = useState([]);
@@ -61,6 +57,7 @@ export default function HomePage() {
     useStore.setState({
       refreshCurrent: GetData,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const GoBack = () => {

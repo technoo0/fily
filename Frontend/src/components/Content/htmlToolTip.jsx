@@ -1,4 +1,4 @@
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 import Tooltip from "@material-ui/core/Tooltip";
 

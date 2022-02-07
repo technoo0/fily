@@ -25,12 +25,7 @@ export default function CardSkeleton() {
 
   return (
     <Card className={classes.root}>
-      <Skeleton
-        className={classes.media}
-        animation="wave"
-        variant="rect"
-        className={classes.media}
-      />
+      <Skeleton className={classes.media} animation="wave" variant="rect" />
 
       <CardContent>
         <React.Fragment>

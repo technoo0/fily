@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import useStore from "../store";
 import axios from "../Axios";
 

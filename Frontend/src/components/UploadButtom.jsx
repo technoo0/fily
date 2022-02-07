@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 //import "./Upload.css";
 import logo from "../images/upload.svg";
-import { Button, Hidden } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import axios from "../Axios";
 import axioslib from "axios";
@@ -44,10 +44,9 @@ export default function UploadButtom() {
   const classes = useStyles();
 
   const FilePicker = useRef();
-  const [FilePath, setFilePath] = useState([]);
+
   const fileChange = () => {
     console.log(FilePicker.current.files);
-    setFilePath(FilePicker.current.files);
 
     uploadf(FilePicker.current.files);
   };
