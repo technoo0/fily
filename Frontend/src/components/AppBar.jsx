@@ -3,6 +3,7 @@ import { AppBar, Grid, TextField } from "@material-ui/core";
 import Logo from "../images/FilyLogo.svg";
 import { makeStyles } from "@material-ui/core";
 import SearchBar from "./Content/SearchBar";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -28,10 +29,12 @@ export default function MyAppBar() {
         spacing={3}
       >
         <Grid item xs={1}>
-          <img className={classes.mainlogo} src={Logo} alt="Fily Logo" />
+          <Link to="/">
+            <img className={classes.mainlogo} src={Logo} alt="Fily Logo" />
+          </Link>
         </Grid>
         <Grid item xs={9}>
-          {/* <SearchBar /> */}
+          <SearchBar />
         </Grid>
       </Grid>
     </AppBar>

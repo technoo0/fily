@@ -15,6 +15,7 @@ import Logo from "../../images/Logo.svg";
 
 import { useState, useEffect } from "react";
 import axios from "../../Axios";
+import useStore from "../../store";
 const UseStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -85,6 +86,12 @@ export default function Login(props) {
     console.log("hhhhhhpohoihohpoi");
     console.log(id, token);
   }, []);
+  const loggedin = useStore((state) => state.loggedin);
+  useEffect(() => {
+    if (loggedin === "OK") {
+      history.push("/");
+    }
+  }, [loggedin]);
 
   const history = useHistory();
   const hanldSubmit = (e) => {

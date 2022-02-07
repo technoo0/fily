@@ -5,6 +5,7 @@ import FolderPage from "../components/Content/FolderPage";
 import { makeStyles } from "@material-ui/core/styles";
 import SideBar from "../components/SideBar";
 import Favorite from "../Views/Favorite";
+import Search from "../Views/Search";
 import Toolbar from "@material-ui/core/Toolbar";
 import UploadingStatus from "../components/UploadingStatus";
 import {
@@ -42,6 +43,9 @@ export default function Home() {
           </Route>
           <Route path={`${path}/Favorite`}>
             <Favorite />
+          </Route>
+          <Route path={`${path}/search`}>
+            <Search />
           </Route>
         </Switch>
       </main>

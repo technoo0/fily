@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Paper,
@@ -12,6 +12,7 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import validator from "validator";
 import axios from "../../Axios";
+import useStore from "../../store";
 
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { makeStyles } from "@material-ui/core/styles";
@@ -100,6 +101,12 @@ export default function Login() {
   const [EmailError, SetEmailError] = useState(false);
   const [PasswordError, SetPasswordError] = useState(false);
   const [CPasswordError, SetCPasswordError] = useState(false);
+  const loggedin = useStore((state) => state.loggedin);
+  useEffect(() => {
+    if (loggedin === "OK") {
+      history.push("/");
+    }
+  }, [loggedin]);
   const hanldSubmit = (e) => {
     e.preventDefault();
     SetEmailError(false);

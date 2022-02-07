@@ -1,6 +1,7 @@
 const info = {
-  BackendUrl: "https://f1ly.herokuapp.com",
-  ForntEbdUrl: "https://www.fily.tech",
+  BackendUrl: process.env.REACT_APP_API_URL,
+  ForntEbdUrl: process.env.REACT_APP_BASE_URL,
 };
+console.log(process.env.REACT_APP_API_URL);
 
 export default info;

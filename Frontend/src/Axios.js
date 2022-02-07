@@ -1,5 +1,6 @@
 import axios from "axios";
+import info from "./utils/info";
 const axiosInstance = axios.create({
-  baseURL: "https://f1ly.herokuapp.com",
+  baseURL: info.BackendUrl,
 });
 export default axiosInstance;

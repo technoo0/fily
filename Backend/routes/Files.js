@@ -57,6 +57,38 @@ router.get("/FavoriteFolders", isAuth, (req, res) => {
     });
 });
 
+router.get("/search", isAuth, (req, res) => {
+  console.log(req.query.q);
+  Promise.all([
+    File.findAll({
+      attributes: ["id", "name", "size", "type", "FolderId"],
+      where: {
+        [Op.and]: [
+          { name: { [Op.like]: `%${req.query.q}%` } },
+          { ownerId: req.user.id },
+        ],
+      },
+      limit: req.query.limit ? 7 : 50,
+    }),
+    Folder.findAll({
+      attributes: ["id", "name"],
+      where: {
+        [Op.and]: [
+          { name: { [Op.like]: `%${req.query.q}%` } },
+          { ownerId: req.user.id },
+        ],
+      },
+      limit: req.query.limit ? 3 : 50,
+    }),
+  ])
+    .then(([files, folders]) => {
+      res.json({ files, folders });
+    })
+    .catch((err) => {
+      res.status(400);
+      console.log(err);
+    });
+});
 router.get("/FavoriteFiles", isAuth, (req, res) => {
   File.findAll({
     attributes: [

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Paper,
@@ -14,6 +14,7 @@ import Logo from "../../images/Logo.svg";
 
 import { useState } from "react";
 import axios from "../../Axios";
+import useStore from "../../store";
 const UseStyles = makeStyles((theme) => ({
   //   Forget: {
   //     marginLeft: 200,
@@ -76,6 +77,14 @@ export default function Login() {
   const [ErrorMassage, SetErrorMassage] = useState("");
   const [AlertType, SetAlertType] = useState("error");
   const history = useHistory();
+
+  const loggedin = useStore((state) => state.loggedin);
+  useEffect(() => {
+    if (loggedin === "OK") {
+      history.push("/");
+    }
+  }, [loggedin]);
+
   const hanldSubmit = (e) => {
     e.preventDefault();
     SetLodding(true);

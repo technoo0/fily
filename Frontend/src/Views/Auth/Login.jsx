@@ -18,8 +18,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/Logo.svg";
 import GoogleLogo from "../../images/Google.svg";
 import { useState } from "react";
+import useStore from "../../store";
 
 import axios from "../../Axios";
+import { useEffect } from "react";
 const UseStyles = makeStyles((theme) => ({
   //   Forget: {
   //     marginLeft: 200,
@@ -99,6 +101,12 @@ export default function Login() {
   const [EmailError, SetEmailError] = useState(false);
   const [PasswordError, SetPasswordError] = useState(false);
   const history = useHistory();
+  const loggedin = useStore((state) => state.loggedin);
+  useEffect(() => {
+    if (loggedin === "OK") {
+      history.push("/");
+    }
+  }, [loggedin]);
   const hanldSubmit = (e) => {
     e.preventDefault();
     SetLodding(true);

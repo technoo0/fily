@@ -69,7 +69,7 @@ export default function SimpleAccordion() {
               </Grid>
             </Grid>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{ flexDirection: "column" }}>
             <Grid container direction={"column"} spacing={1}>
               {ff.map((item, i) =>
                 item ? (

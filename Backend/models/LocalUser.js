@@ -39,6 +39,6 @@ const LocalUser = sequelize.define(
 
 // `sequelize.define` also returns the model
 // console.log(User === sequelize.models.User); // true
-sequelize.sync();
+LocalUser.sync();
 
 module.exports = LocalUser;

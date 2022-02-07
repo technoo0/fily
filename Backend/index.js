@@ -13,7 +13,12 @@ const ShareLink = require("./routes/ShareLink");
 const session = require("./config/session");
 var cors = require("cors");
 const app = express();
-app.use(cors({ origin: "https://www.fily.tech", credentials: true }));
+const originUrl =
+  process.env.NODE_ENV == "production"
+    ? "https://www.fily.tech"
+    : "http://localhost:3000";
+console.warn("we are in:", process.env.NODE_ENV, "corss is:", originUrl);
+app.use(cors({ origin: originUrl, credentials: true }));
 
 app.set("trust proxy", 1);
 app.use(express.json());
