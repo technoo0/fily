@@ -26,7 +26,7 @@ jobs:
       - name: Deploy to firebase hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          working-directory: ./Frontend
+          entryPoint: ./Frontend
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FILY_23FD9 }}"
           projectId: fily-23fd9
