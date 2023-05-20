@@ -20,8 +20,6 @@ jobs:
 
       - name: Set Node.js
         uses: actions/setup-node@master
-        with:
-          node-version: 12
 
       - name: Install dependencies
         working-directory: ./Frontend
