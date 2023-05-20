@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Set Node.js
+      - name: Set Node.js ENV
         uses: actions/setup-node@master
 
       - name: Install dependencies
