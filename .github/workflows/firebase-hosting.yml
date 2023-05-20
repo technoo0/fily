@@ -8,8 +8,8 @@ on:
       - main
 
 env:
-  REACT_APP_BASE_URL: https://www.fily.tech/
-  REACT_APP_API_URL: https://f1ly.herokuapp.com/
+  REACT_APP_BASE_URL: https://fily-23fd9.web.app/
+  REACT_APP_API_URL: https://fily.onrender.com/
 
 jobs:
   deploy:
