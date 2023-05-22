@@ -15,7 +15,7 @@ var cors = require("cors");
 const app = express();
 const originUrl =
   process.env.NODE_ENV == "production"
-    ? "https://www.fily.tech"
+    ? process.env.FRONTEND_URL
     : "http://localhost:3000";
 console.warn("we are in:", process.env.NODE_ENV, "corss is:", originUrl);
 app.use(cors({ origin: originUrl, credentials: true }));

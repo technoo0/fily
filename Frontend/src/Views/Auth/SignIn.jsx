@@ -13,7 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import validator from "validator";
 import axios from "../../Axios";
 import useStore from "../../store";
-
+import info from "../../utils/info";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/Logo.svg";
@@ -172,10 +172,10 @@ export default function Login() {
   };
 
   const TwitterHandel = () => {
-    window.location.href = "http://localhost:4000/auth/twitter";
+    window.location.href = `${info.BackendUrl}/auth/twitter`;
   };
   const GoogleHandel = () => {
-    window.location.href = "http://localhost:4000/auth/google";
+    window.location.href = `${info.BackendUrl}/auth/google`;
   };
 
   return (

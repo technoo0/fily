@@ -69,7 +69,7 @@ export default function App() {
         useStore.setState({ loggedin: "NO" });
         // History.push("/Login");
         if (window.location.pathname.includes("/u/")) {
-          window.location.href = "https://www.fily.tech/Login";
+          window.location.href = process.env.REACT_APP_BASE_URL + "/Login";
         } else {
           console.log("lol no");
         }

@@ -19,7 +19,7 @@ const SendForgetEmail = (req, res, next) => {
         id: user.id,
       };
       const token = jwt.sign(payload, scret, { expiresIn: "10m" });
-      const link = `http://localhost:3000/ResetPassword/${user.id}/${token}`;
+      const link = `${process.env.BACKEND_URL}/ResetPassword/${user.id}/${token}`;
       SendEmailTo(user.email, link)
         .then(() => {
           next();

@@ -12,7 +12,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("https://www.fily.tech");
+    res.redirect(process.env.FRONTEND_URL);
   }
 );
 module.exports = router;
