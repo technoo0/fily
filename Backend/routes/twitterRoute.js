@@ -9,7 +9,7 @@ router.get(
   passport.authenticate("twitter", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("https://www.fily.tech");
+    res.redirect(process.env.FRONTEND_URL);
   }
 );
 
