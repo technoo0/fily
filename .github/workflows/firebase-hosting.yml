@@ -8,8 +8,8 @@ on:
       - main
 
 env:
-  REACT_APP_BASE_URL: https://fily-23fd9.web.app/
-  REACT_APP_API_URL: https://fily.onrender.com/
+  REACT_APP_BASE_URL: https://fily-23fd9.web.app
+  REACT_APP_API_URL: https://fily.onrender.com
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Set Node.js
+      - name: Set Node.js ENV
         uses: actions/setup-node@master
 
       - name: Install dependencies
